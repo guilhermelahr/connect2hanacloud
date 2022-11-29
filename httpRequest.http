@@ -1,0 +1,30 @@
+GET http://localhost:4004/Catalog/Customers
+
+POST http://localhost:4004/Catalog/Customers
+Content-Type: application/json
+
+{
+"id": 12,
+"name": "Jamie",
+"city": "Vancouver",
+"gender": "Male",
+"number_of_trips": 8,
+"loyalty_member": false,
+"balance": 12.31
+}
+
+
+
+DELETE http://localhost:4004/Catalog/Customers(9)
+
+
+PATCH http://localhost:4004/Catalog/Customers(7)
+Content-Type: application/json
+
+{
+"name": "Guilherme",
+"city": "Vancouver",
+"gender": "Male",
+"number_of_trips": 8,
+"loyalty_member": false
+}

@@ -1,0 +1,34 @@
+---
+_schema-version: '3.1'
+ID: readRemoteDb
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production
+modules:
+  - name: readRemoteDb-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: cross-container-service-1
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+resources:
+  - name: cross-container-service-1
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: my-papm-db
+      service-tags: ["database"]
+    properties:
+      the-service-name: ${service-name}

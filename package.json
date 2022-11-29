@@ -1,0 +1,70 @@
+{
+  "name": "readRemoteDb",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^6",
+    "@sap/hana-client": "^2.14.23",
+    "@sap/xsenv": "^3.4.0",
+    "express": "^4"
+  },
+  "scripts": {
+    "start": "cds run"
+  },
+  "engines": {
+    "node": "^16.15"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana-cloud",
+        "credentials": {
+          "driver": "com.sap.db.jdbc.Driver",
+          "encrypt": true,
+          "endpoint": "https://api.cf.us10-001.hana.ondemand.com",
+          "host": "1a3784a3-528b-4b0c-b82e-c9b80d0b3453.hana.prod-eu10.hanacloud.ondemand.com",
+          "password": "<YOUR_PASSWORD>",
+          "port": "443",
+          "schema": "<YOUR_TENAT>",
+          "tags": [
+            "hana"
+          ],
+          "user": "<YOUR_USER>",
+          "validate_certificate": false
+        },
+        "pool": {
+          "min": 10,
+          "max": 500
+        }
+      }
+    }
+  }
+}
